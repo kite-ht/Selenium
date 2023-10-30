@@ -10,7 +10,7 @@ import java.io.File;
 
 public class TC01 {
     @Test
-    public void test() {
+    public static void testcase01() {
         // 1. Init web-driver session
         WebDriver driver = driverFactory.getChromeDriver();
         try {
@@ -29,7 +29,7 @@ public class TC01 {
             mobileMenu.click();
             TakesScreenshot beforeSC =((TakesScreenshot)driver);
             File srcFile1= beforeSC.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/selenium-webdriver-java/src/test/java/BaiTap/TC01/BeforeSort.png"));
+            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC01/BeforeSort.png"));
             // 5: Select SORT BY dropdown as name
             WebElement sortDropdown = driver.findElement(By.xpath("//select[@title='Sort By']"));
             Select sortSelect = new Select(sortDropdown);
@@ -37,7 +37,7 @@ public class TC01 {
             // 6: Take a screenshot after sort
             TakesScreenshot afterSC =((TakesScreenshot)driver);
             File srcFile2= afterSC.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile2, new File("/Users/hatuankiet/Downloads/selenium-webdriver-java/src/test/java/BaiTap/TC01/AfterSort.png"));
+            FileHandler.copy(srcFile2, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC01/AfterSort.png"));
         } catch (Exception e) {
             e.printStackTrace();
         }

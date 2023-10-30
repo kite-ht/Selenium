@@ -9,7 +9,7 @@ import java.io.File;
 
 public class TC02 {
     @Test
-    public void Tc2() {
+    public static void testcase02() {
         // 1. Init web-driver session
         WebDriver driver = driverFactory.getChromeDriver();
         try {
@@ -25,14 +25,14 @@ public class TC02 {
             //Take screenshot
             TakesScreenshot mobilePage =((TakesScreenshot)driver);
             File srcFile1= mobilePage.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/selenium-webdriver-java/src/test/java/BaiTap/TC02/MobilePage.png"));
+            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC02/MobilePage.png"));
             // 5: Click on Sony Xperia mobile
             WebElement sonyXperiaLink = driver.findElement(By.xpath("//a[contains(text(),'Sony Xperia')]"));
             sonyXperiaLink.click();
             //Take screenshot
             TakesScreenshot detailPage =((TakesScreenshot)driver);
             File srcFile2= detailPage.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile2, new File("/Users/hatuankiet/Downloads/selenium-webdriver-java/src/test/java/BaiTap/TC02/DetailPage.png"));
+            FileHandler.copy(srcFile2, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC02/DetailPage.png"));
             // 6: Read the Sony Xperia mobile from the detail page
             WebElement sonyXperiaDetailPriceElement = driver.findElement(By.xpath("//span[@class='price']"));
             String sonyXperiaDetailPrice = sonyXperiaDetailPriceElement.getText();
