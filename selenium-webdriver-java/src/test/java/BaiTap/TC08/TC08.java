@@ -87,7 +87,7 @@ public class TC08 {
             String expectedOrderVerificationMessage = "YOUR ORDER HAS BEEN RECEIVED.";
             assertEquals(expectedOrderVerificationMessage, orderVerificationMessage);
             System.out.println("Order number: "+ checkoutPage.getOrderNumberLinkText());
-            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC08/reOrder.png");
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC08/ReOrder.png");
             // Debug purpose only
             Thread.sleep(2000);
 
