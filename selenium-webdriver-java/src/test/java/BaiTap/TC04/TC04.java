@@ -3,16 +3,14 @@ package BaiTap.TC04;
 import driver.driverFactory;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.io.File;
+import static BaiTap.TC01.TC01.captureScreenshot;
 
 public class TC04 {
     @Test
     public  static  void testcase04(){
-        WebDriver driver = new ChromeDriver();
+        WebDriver driver = driverFactory.getChromeDriver();
         try {
 
             // 1. Go to http://live.techpanda.org/
@@ -23,13 +21,11 @@ public class TC04 {
             mobileMenu.click();
 
             // 3. Click on "Add To Compare" for Sony Xperia and iPhone
-            WebElement sonyXperiaCompare = driver.findElement(By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > ul:nth-child(2) > li:nth-child(2) > div:nth-child(2) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(2) > a:nth-child(2)"));
+            WebElement sonyXperiaCompare = driver.findElement(By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > ul:nth-child(2) > li:nth-child(1) > div:nth-child(2) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(2) > a:nth-child(2)"));
             sonyXperiaCompare.click();
-            WebElement iPhoneCompare = driver.findElement(By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(3) > div:nth-child(2) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(2) > a:nth-child(2)"));
+            WebElement iPhoneCompare = driver.findElement(By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(2) > div:nth-child(2) > div:nth-child(4) > ul:nth-child(2) > li:nth-child(2) > a:nth-child(2)"));
             iPhoneCompare.click();
-            TakesScreenshot addcompare =((TakesScreenshot)driver);
-            File srcFile1= addcompare.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC04/AddCompare.png"));
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC04/AddtoComparePage.png");
             // 4. Click on "COMPARE" button
             WebElement compareButton = driver.findElement(By.cssSelector("button[title='Compare']"));
             compareButton.click();
@@ -49,9 +45,7 @@ public class TC04 {
             String popUpText = popUpContent.getText();
             Assert.assertTrue(popUpText.contains("SONY XPERIA"));
             Assert.assertTrue(popUpText.contains("IPhone"));
-            TakesScreenshot comparePage =((TakesScreenshot)driver);
-            File srcFile2 = comparePage.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile2, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC04/ComparePage.png"));
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC04/ComparePage.png");
             Thread.sleep(3000);
 
             // 6. Close the pop-up window

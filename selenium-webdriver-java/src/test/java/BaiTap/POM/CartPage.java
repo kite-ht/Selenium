@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.AssertJUnit;
 
 public class CartPage {
     WebDriver driver;
@@ -20,6 +21,18 @@ public class CartPage {
     By shippingHandlingLabel = By.xpath("//*[@id=\"shopping-cart-totals-table\"]/tbody/tr[2]/td[2]/span");
     By countryChosenOption = By.xpath("//*[@id='country']/option[234]");
     By regionChosenOption = By.xpath("//*[@id='region_id']/option[13]");
+
+    By updateQuantityButton = By.xpath("//*[@id=\"shopping-cart-table\"]/tbody/tr/td[4]/button/span/span");
+
+    public void clickUpdateQuantityButton() {
+        driver.findElement(updateQuantityButton).click();
+    }
+
+    public void inputValueQuantityLocator(String value){
+        WebElement quantityInput = driver.findElement(quantityLocator);
+        quantityInput.clear();
+        quantityInput.sendKeys(value);
+    }
 
     public CartPage(WebDriver driver) {
         this.driver = driver;
@@ -121,4 +134,37 @@ public class CartPage {
             return "No match found";
         }
     }
+    By applyDiscount = By.cssSelector("button[title='Apply'] span span");
+    By discount = By.id("coupon_code");
+    By iphoneAddToCart = By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(3) > ul:nth-child(2) > li:nth-child(1) > div:nth-child(2) > div:nth-child(4) > button:nth-child(1) > span:nth-child(1) > span:nth-child(1)");
+    By discountGenerated = By.cssSelector("tbody tr:nth-child(2) td:nth-child(2) span:nth-child(1)");
+    By grandTotal = By.cssSelector("strong span[class='price']");
+
+    public void addIphoneToCart(){
+        WebElement btn = driver.findElement(iphoneAddToCart);
+        btn.click();
+    }
+
+    public void enterDiscountCode(String key){
+        WebElement discountCode = driver.findElement(discount);
+        discountCode.sendKeys(key);
+    }
+
+    public void clickApplyDiscount(){
+        WebElement apply = driver.findElement(applyDiscount);
+        apply.click();
+    }
+
+    public String discountGenerated(){
+        WebElement discount = driver.findElement(discountGenerated);
+        String discountStr = discount.getText().replaceAll("[-$,]", "");
+        return (discountStr);
+    }
+
+    public void verifyDiscount(double oldGrand){
+        double expected = oldGrand - Double.parseDouble(discountGenerated());
+        double actual = Double.parseDouble(getInitGrandTotal());
+        AssertJUnit.assertEquals(expected,actual);
+    }
+    public String getInitGrandTotal(){ return  driver.findElement(grandTotal).getText().replaceAll("[$,]", ""); }
 }

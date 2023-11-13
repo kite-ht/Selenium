@@ -11,6 +11,7 @@ import org.testng.annotations.Test;
 
 import java.io.File;
 
+import static BaiTap.TC01.TC01.captureScreenshot;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class TC06 {
@@ -115,9 +116,7 @@ public class TC06 {
             String expectedOrderVerificationMessage = "YOUR ORDER HAS BEEN RECEIVED.";
             assertEquals(expectedOrderVerificationMessage, orderVerificationMessage);
             System.out.println("Order number: "+ checkoutPage.getOrderNumberLinkText());
-            TakesScreenshot orderSC =((TakesScreenshot)driver);
-            File srcFile1= orderSC.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC06/Order.png"));
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC06/Order.png");
 
             // Debug purpose only
             Thread.sleep(2000);

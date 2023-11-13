@@ -2,10 +2,8 @@ package BaiTap.TC02;
 
 import driver.driverFactory;
 import org.openqa.selenium.*;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.Test;
-
-import java.io.File;
+import static BaiTap.TC01.TC01.captureScreenshot;
 
 public class TC02 {
     @Test
@@ -23,16 +21,12 @@ public class TC02 {
             String sonyXperiaPrice = sonyXperiaPriceElement.getText();
             System.out.println("Price in mobile page: " + sonyXperiaPrice);
             //Take screenshot
-            TakesScreenshot mobilePage =((TakesScreenshot)driver);
-            File srcFile1= mobilePage.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC02/MobilePage.png"));
+            captureScreenshot(driver, "/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC02/MobilePage.png");
             // 5: Click on Sony Xperia mobile
             WebElement sonyXperiaLink = driver.findElement(By.xpath("//a[contains(text(),'Sony Xperia')]"));
             sonyXperiaLink.click();
             //Take screenshot
-            TakesScreenshot detailPage =((TakesScreenshot)driver);
-            File srcFile2= detailPage.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile2, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC02/DetailPage.png"));
+            captureScreenshot(driver, "/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC02/DetailPage.png");
             // 6: Read the Sony Xperia mobile from the detail page
             WebElement sonyXperiaDetailPriceElement = driver.findElement(By.xpath("//span[@class='price']"));
             String sonyXperiaDetailPrice = sonyXperiaDetailPriceElement.getText();

@@ -4,17 +4,20 @@ import BaiTap.POM.LoginPage;
 import BaiTap.POM.RegisterPage;
 import driver.driverFactory;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.Test;
 
 import java.io.File;
+
+import static BaiTap.TC01.TC01.captureScreenshot;
 
 public class TC07 {
     @Test
     public static void testcase07() {
 
         //1. Init web-driver session
-        WebDriver driver = driverFactory.getChromeDriver();
+        WebDriver driver = new ChromeDriver();
         RegisterPage registerPage = new RegisterPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         try {
@@ -43,9 +46,7 @@ public class TC07 {
                 driver.switchTo().window(handle);
             }
             Thread.sleep(5000);
-            TakesScreenshot printorderSC =((TakesScreenshot)driver);
-            File srcFile1= printorderSC.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC07/PrintOrder.png"));
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC07/PrintOrder.png");
 
         }catch (Exception e){
             e.printStackTrace();

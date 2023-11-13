@@ -13,6 +13,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.time.Duration;
 
+import static BaiTap.TC01.TC01.captureScreenshot;
+
 public class TC05 {
     @Test
     public static void testcase05() {
@@ -30,7 +32,7 @@ public class TC05 {
             registerPage.clickCreateAccountLink();
             registerPage.enterFirstName("John");
             registerPage.enterLastName("Doe");
-            registerPage.enterEmail("testuser103@example.com"); // Enter a unique email
+            registerPage.enterEmail("testuser104@example.com"); // Enter a unique email
             registerPage.enterPassword("password");
             registerPage.enterConfirmPassword("password");
 
@@ -47,9 +49,7 @@ public class TC05 {
             } else {
                 System.out.println("Registration failed. Test failed.");
             }
-            TakesScreenshot Registersuccess =((TakesScreenshot)driver);
-            File srcFile1 = Registersuccess.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC05/Registersuccess.png"));
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC05/Registersuccess.png");
             // 6. Go to TV menu
             By tvMenuLink = By.xpath("//*[@id='nav']/ol/li[2]/a");
             driver.findElement(tvMenuLink).click();
@@ -80,9 +80,7 @@ public class TC05 {
             } else {
                 System.out.println("Wishlist sharing failed. Test failed.");
             }
-            TakesScreenshot shareWishlistSuccess =((TakesScreenshot)driver);
-            File srcFile2 = shareWishlistSuccess.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile2, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC05/ShareWishlistSuccess.png"));
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC05/ShareWishlistSuccess.png");
             // Debug purpose only
             Thread.sleep(2000);
         } catch (Exception e) {

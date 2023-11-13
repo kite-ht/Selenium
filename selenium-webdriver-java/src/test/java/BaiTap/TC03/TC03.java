@@ -2,15 +2,14 @@ package BaiTap.TC03;
 
 import driver.driverFactory;
 import org.openqa.selenium.*;
-import org.openqa.selenium.io.FileHandler;
 import org.testng.annotations.Test;
 import org.testng.Assert;
-
-import java.io.File;
+import static BaiTap.TC01.TC01.captureScreenshot;
 
 public class TC03 {
     @Test
     public static void testcase03(){
+        // 1. Init web-driver session
         WebDriver driver = driverFactory.getChromeDriver();
         try {
             // 2. Open target page - Login Form
@@ -44,9 +43,7 @@ public class TC03 {
                 // Ignore the assertion error and continue with the rest of the code
                 System.out.println("Assertion error: " + e.getMessage());
             }
-            TakesScreenshot errorPage =((TakesScreenshot)driver);
-            File srcFile1= errorPage.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile1, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC03/ErrorPage.png"));
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC03/ErrorPage.png");
             // 8: click empty cart
             WebElement emptyCartLink = driver.findElement(By.xpath("//button[@title='Empty Cart']"));
             emptyCartLink.click();
@@ -60,9 +57,7 @@ public class TC03 {
                 // Ignore the assertion error and continue with the rest of the code
                 System.out.println("Assertion error: " + e.getMessage());
             }
-            TakesScreenshot emptyPage =((TakesScreenshot)driver);
-            File srcFile2= emptyPage.getScreenshotAs(OutputType.FILE);
-            FileHandler.copy(srcFile2, new File("/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC03/EmptyPage.png"));
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC03/EmptyPage.png");
         }catch (Exception e){
             e.printStackTrace();
         }

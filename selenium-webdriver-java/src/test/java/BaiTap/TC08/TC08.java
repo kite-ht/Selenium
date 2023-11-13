@@ -4,24 +4,20 @@ import BaiTap.POM.CartPage;
 import BaiTap.POM.CheckoutPage;
 import BaiTap.POM.LoginPage;
 import BaiTap.POM.RegisterPage;
-import driver.driverFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Test;
 
-import java.time.Duration;
-
+import static BaiTap.TC01.TC01.captureScreenshot;
 import static org.testng.AssertJUnit.assertEquals;
 
 public class TC08 {
     @Test
     public static void testcase08() {
         // 0. Init web-driver session
-        WebDriver driver = driverFactory.getChromeDriver();
+        WebDriver driver = new ChromeDriver();
         try {
-
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
             // 1. Go to http://live.techpanda.org/
             driver.get("http://live.techpanda.org/");
@@ -91,7 +87,7 @@ public class TC08 {
             String expectedOrderVerificationMessage = "YOUR ORDER HAS BEEN RECEIVED.";
             assertEquals(expectedOrderVerificationMessage, orderVerificationMessage);
             System.out.println("Order number: "+ checkoutPage.getOrderNumberLinkText());
-
+            captureScreenshot(driver,"/Users/hatuankiet/Downloads/Selenium/selenium-webdriver-java/src/test/java/BaiTap/TC08/reOrder.png");
             // Debug purpose only
             Thread.sleep(2000);
 
